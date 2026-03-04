@@ -1,0 +1,247 @@
+.page {
+    width: 100%;
+}
+
+.courseDetail {
+    margin-top: -2rem;
+    /* Pull up to overlap header slightly if needed, or just standard spacing */
+}
+
+.featureGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.featureCard {
+    text-align: center;
+    padding: 2rem;
+}
+
+.icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.curriculumList {
+    counter-reset: curriculum;
+}
+
+.curriculumItem {
+    position: relative;
+    padding-left: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.curriculumItem::before {
+    counter-increment: curriculum;
+    content: counter(curriculum);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2rem;
+    height: 2rem;
+    background-color: var(--primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.curriculumTitle {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.tableContainer {
+    overflow-x: auto;
+}
+
+.comparisonTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+}
+
+.comparisonTable th,
+.comparisonTable td {
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+}
+
+.comparisonTable th {
+    background-color: var(--muted);
+    font-weight: 600;
+}
+
+.highlightRow {
+    background-color: rgba(212, 175, 55, 0.1);
+}
+
+/* Course Grid Layout */
+.courseGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+@media (max-width: 1024px) {
+    .courseGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .courseGrid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+/* Learning Content Grid */
+.learningGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.learningCard {
+    padding: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.learningImage {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.learningTitle {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 1.5rem 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.titleJa {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.learningContent {
+    margin: 0 1.5rem 1rem;
+    line-height: 1.6;
+}
+
+.learningContent:last-child {
+    margin-bottom: 1.5rem;
+}
+
+.contentLabel {
+    font-weight: 600;
+    color: #a78bfa;
+    margin-bottom: 0.3rem;
+}
+
+.learningContent p:last-child {
+    color: rgba(255, 255, 255, 0.85);
+    margin: 0;
+}
+
+/* Message Container */
+.messageContainer {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 3rem 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+}
+
+.messageHeadline {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.messageText {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* CTA Container */
+.ctaContainer {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.ctaButton {
+    display: inline-block;
+    padding: 1.2rem 3rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
+    border: none;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(124, 58, 237, 0.4);
+}
+
+.ctaButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.6);
+    background: linear-gradient(135deg, #6d28d9 0%, #8b5cf6 100%);
+}
+
+.ctaButton:active {
+    transform: translateY(0);
+}
+
+/* Responsive adjustments for learning cards */
+@media (max-width: 768px) {
+    .learningGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .messageContainer {
+        padding: 2rem 1.5rem;
+    }
+
+    .messageHeadline {
+        font-size: 1.5rem;
+    }
+
+    .messageText {
+        font-size: 1rem;
+    }
+
+    .ctaButton {
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+    }
+}

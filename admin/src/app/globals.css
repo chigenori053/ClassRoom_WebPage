@@ -1,0 +1,113 @@
+:root {
+  /* Natural & Warm Color Palette */
+  --background: #FAFAF7;
+  --foreground: #3C3028;
+
+  /* Primary: Warm deep brown (headings, UI) */
+  --primary: #4A3B2F;
+  --primary-light: #7A6B5F;
+  --primary-dark: #2C2018;
+  --primary-foreground: #FFFFFF;
+
+  /* Secondary: Terracotta (active accent) */
+  --secondary: #C97B5A;
+  --secondary-light: #E8A98D;
+  --secondary-dark: #A5604A;
+  --secondary-foreground: #FFFFFF;
+
+  /* Accent: Sage green (card backgrounds, muted areas) */
+  --accent: #F2F5EE;
+  --accent-border: #C8D5C0;
+  --accent-dark: #7A9E7E;
+  --accent-foreground: #3C3028;
+
+  --muted: #F2F5EE;
+  --muted-foreground: #8A7D74;
+
+  --card: #FFFFFF;
+  --card-foreground: #3C3028;
+  --card-sage: #F2F5EE;
+
+  --border: #E8E4DC;
+  --input: #F7F4F0;
+  --ring: #C97B5A;
+
+  /* Layout */
+  --container-width: 1000px;
+  --header-height: 0px;
+  --radius: 0.75rem;
+  --radius-lg: 1.25rem;
+
+  /* Typography */
+  --font-sans: 'Noto Sans JP', system-ui, sans-serif;
+  --font-serif: 'Noto Serif JP', serif;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--background);
+  color: var(--foreground);
+  line-height: 1.85;
+  letter-spacing: 0.02em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--secondary);
+}
+
+ul {
+  list-style: none;
+}
+
+h1 {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.03em;
+  color: var(--primary);
+}
+
+h2 {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: 0.02em;
+  color: var(--primary);
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--primary);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}

@@ -1,0 +1,124 @@
+.pricingContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.pricingSection {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+}
+
+.pricingSection:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.planTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.planDescription {
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.planCards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+}
+
+.planCard {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.planCard:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(124, 58, 237, 0.5);
+    transform: scale(1.05);
+    box-shadow: 0 4px 16px rgba(124, 58, 237, 0.3);
+}
+
+.frequency {
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 1rem;
+}
+
+.price {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.3rem;
+    margin-bottom: 1rem;
+}
+
+.priceAmount {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #7c3aed;
+    background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.priceLabel {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.time {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 0.5rem 1rem;
+    background: rgba(124, 58, 237, 0.1);
+    border-radius: 20px;
+    display: inline-block;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .pricingContainer {
+        gap: 2rem;
+    }
+
+    .pricingSection {
+        padding: 1.5rem;
+    }
+
+    .planTitle {
+        font-size: 1.3rem;
+    }
+
+    .planCards {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .priceAmount {
+        font-size: 1.8rem;
+    }
+}

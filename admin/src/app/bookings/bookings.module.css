@@ -1,0 +1,109 @@
+.dashboardPage {
+    padding: 2rem 2rem 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.title {
+    font-size: 1.5rem;
+    color: var(--primary);
+}
+
+.tableContainer {
+    background: var(--card);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    text-align: left;
+}
+
+.table th,
+.table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.table th {
+    background-color: var(--muted);
+    font-weight: 600;
+    color: var(--foreground);
+    white-space: nowrap;
+}
+
+.table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.rowHighlight {
+    background-color: rgba(236, 72, 153, 0.03);
+}
+
+.table tbody tr:hover {
+    background-color: var(--muted);
+}
+
+.dateBadge {
+    display: inline-block;
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+    padding: 0.1rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    margin-top: 0.3rem;
+}
+
+.contactCell a {
+    color: var(--primary);
+    text-decoration: underline;
+}
+
+.notesCell {
+    max-width: 250px;
+    white-space: pre-wrap;
+    font-size: 0.85rem;
+    color: var(--muted-foreground);
+}
+
+.statusBadge {
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.statusBadge:hover {
+    opacity: 0.8;
+}
+
+.statusPENDING {
+    background-color: var(--secondary-light);
+    color: var(--secondary-dark);
+}
+
+.statusCONFIRMED {
+    background-color: var(--accent-light);
+    color: var(--accent-dark);
+}
+
+.statusCANCELLED {
+    background-color: var(--border);
+    color: var(--muted-foreground);
+}

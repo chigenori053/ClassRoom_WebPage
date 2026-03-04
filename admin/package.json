@@ -1,0 +1,36 @@
+{
+  "name": "kukka-admin",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3001",
+    "build": "prisma generate && next build",
+    "start": "next start -p 3001",
+    "lint": "next lint",
+    "db:migrate": "prisma migrate deploy --schema=./prisma/schema.prisma"
+  },
+  "prisma": {
+    "schema": "./prisma/schema.prisma"
+  },
+  "dependencies": {
+    "@fullcalendar/core": "^6.1.20",
+    "@fullcalendar/interaction": "^6.1.20",
+    "@fullcalendar/react": "^6.1.20",
+    "@fullcalendar/timegrid": "^6.1.20",
+    "@prisma/client": "^6.19.2",
+    "next": "16.1.5",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.5",
+    "prisma": "^6.19.2",
+    "typescript": "^5"
+  }
+}

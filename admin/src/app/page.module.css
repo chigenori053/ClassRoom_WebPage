@@ -1,0 +1,54 @@
+.loginPage {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--muted);
+    padding: 1rem;
+}
+
+.loginCard {
+    width: 100%;
+    max-width: 400px;
+    padding: 2.5rem;
+}
+
+.loginTitle {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: var(--primary);
+}
+
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.formGroup label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--foreground);
+}
+
+.input {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-family: inherit;
+    font-size: 1rem;
+    background-color: var(--background);
+}
+
+.errorMessage {
+    color: #B91C1C;
+    font-size: 0.9rem;
+    text-align: center;
+}

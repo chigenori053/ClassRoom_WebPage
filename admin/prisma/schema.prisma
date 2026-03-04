@@ -1,0 +1,67 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Article {
+  id          Int       @id @default(autoincrement())
+  slug        String    @unique
+  title       String
+  summary     String
+  body        String
+  thumbnail   String?
+  category    String?
+  tags        String    @default("")
+  metaDesc    String?
+  status      String    @default("DRAFT") // DRAFT | PUBLISHED
+  publishedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Schedule {
+  id          Int      @id @default(autoincrement())
+  title       String
+  startTime   DateTime
+  endTime     DateTime
+  description String?
+  location    String   @default("KuKKA プログラミング教室")
+  gasEventId  String?  // Google Calendar イベントID
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model TrialSlot {
+  id         Int      @id @default(autoincrement())
+  startTime  DateTime
+  endTime    DateTime
+  status     String   @default("OPEN") // OPEN | FULL | CLOSED
+  gasEventId String?
+  booking    Booking?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Booking {
+  id            Int        @id @default(autoincrement())
+  parentName    String
+  childName     String
+  childAge      String
+  email         String
+  phone         String?
+  course        String
+  preferredDate DateTime
+  status        String     @default("PENDING") // PENDING, CONFIRMED, CANCELLED
+  notes         String?
+  trialSlotId   Int?       @unique
+  trialSlot     TrialSlot? @relation(fields: [trialSlotId], references: [id])
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+}

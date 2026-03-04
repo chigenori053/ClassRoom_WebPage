@@ -1,0 +1,261 @@
+/* Article List */
+.listPage {
+    padding: 2rem 2rem 4rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.listHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.listTitle {
+    font-size: 1.5rem;
+    color: var(--primary);
+}
+
+.headerActions {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.articleTable {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    background: var(--card);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    overflow: hidden;
+}
+
+.articleTable th,
+.articleTable td {
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+    vertical-align: middle;
+}
+
+.articleTable th {
+    background-color: var(--muted);
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--muted-foreground);
+    white-space: nowrap;
+}
+
+.articleTable tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.articleTable tbody tr:hover {
+    background-color: var(--muted);
+}
+
+.articleTitle {
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 0.95rem;
+}
+
+.articleSlug {
+    font-size: 0.8rem;
+    color: var(--muted-foreground);
+    margin-top: 0.25rem;
+}
+
+.statusBadge {
+    display: inline-block;
+    padding: 0.2rem 0.65rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.statusDRAFT {
+    background-color: var(--muted);
+    color: var(--muted-foreground);
+}
+
+.statusPUBLISHED {
+    background-color: var(--accent);
+    color: var(--accent-dark);
+    border: 1px solid var(--accent-border);
+}
+
+.actionButtons {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.actionBtn {
+    padding: 0.3rem 0.7rem;
+    border-radius: var(--radius);
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+    transition: background-color 0.2s;
+}
+
+.editBtn {
+    background-color: var(--muted);
+    color: var(--foreground);
+}
+
+.editBtn:hover {
+    background-color: var(--border);
+}
+
+.publishBtn {
+    background-color: var(--secondary);
+    color: var(--secondary-foreground);
+}
+
+.publishBtn:hover {
+    background-color: var(--secondary-dark);
+}
+
+.unpublishBtn {
+    background-color: var(--accent-border);
+    color: var(--primary);
+}
+
+.unpublishBtn:hover {
+    background-color: var(--accent-dark);
+    color: white;
+}
+
+.deleteBtn {
+    background-color: transparent;
+    color: #B91C1C;
+    border: 1px solid #FECACA;
+}
+
+.deleteBtn:hover {
+    background-color: #FEE2E2;
+}
+
+.emptyState {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--muted-foreground);
+}
+
+/* Article Form */
+.formPage {
+    padding: 2rem 2rem 4rem;
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+.formHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.formTitle {
+    font-size: 1.5rem;
+    color: var(--primary);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.formLabel {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--foreground);
+}
+
+.required {
+    color: var(--secondary);
+    margin-left: 0.25rem;
+}
+
+.formHint {
+    font-size: 0.8rem;
+    color: var(--muted-foreground);
+}
+
+.input,
+.textarea,
+.select {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-family: inherit;
+    font-size: 0.95rem;
+    background-color: var(--background);
+    color: var(--foreground);
+    width: 100%;
+    transition: border-color 0.2s;
+}
+
+.input:focus,
+.textarea:focus,
+.select:focus {
+    outline: none;
+    border-color: var(--secondary);
+}
+
+.textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.bodyTextarea {
+    min-height: 400px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
+.formRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+}
+
+.formActions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+}
+
+@media (max-width: 640px) {
+    .formRow {
+        grid-template-columns: 1fr;
+    }
+
+    .formActions {
+        flex-direction: column-reverse;
+    }
+}

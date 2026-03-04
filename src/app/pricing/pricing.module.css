@@ -1,0 +1,120 @@
+.page {
+    padding-top: var(--header-height);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+}
+
+.headerSection {
+    text-align: center;
+    padding: 6rem 1rem 4rem;
+}
+
+.title {
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: var(--muted-foreground);
+    line-height: 1.8;
+}
+
+.sectionTitle {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 2rem;
+    color: var(--primary);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.pricingCard {
+    text-align: center;
+    padding: 3rem 2rem;
+    border-top: 4px solid var(--secondary);
+}
+
+.pricingCard h3 {
+    font-size: 1.5rem;
+    color: var(--foreground);
+    margin-bottom: 1.5rem;
+}
+
+.price {
+    margin-bottom: 2rem;
+    color: var(--primary);
+}
+
+.amount {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.currency {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.features {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    color: var(--foreground);
+}
+
+.features li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.features li:last-child {
+    border-bottom: none;
+}
+
+.infoBox {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.infoRow {
+    display: flex;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.infoRow:last-child {
+    border-bottom: none;
+}
+
+.infoLabel {
+    width: 150px;
+    font-weight: 600;
+    color: var(--secondary);
+    flex-shrink: 0;
+}
+
+.infoValue {
+    color: var(--foreground);
+}
+
+@media (max-width: 768px) {
+    .infoRow {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}

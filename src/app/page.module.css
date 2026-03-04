@@ -1,141 +1,299 @@
-.page {
-  --background: #fafafa;
-  --foreground: #fff;
-
-  --text-primary: #000;
-  --text-secondary: #666;
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-  --button-secondary-border: #ebebeb;
-
+.hero {
+  position: relative;
+  height: 90vh;
+  min-height: 600px;
   display: flex;
-  min-height: 100vh;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-geist-sans);
-  background-color: var(--background);
+  text-align: center;
+  color: white;
+  overflow: hidden;
+  background-color: var(--primary);
+  /* Deep Blue base */
 }
 
-.main {
-  display: flex;
-  min-height: 100vh;
+/* AI Particle background simulation using CSS pattern or gradient */
+.heroOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.15) 0%, transparent 20%),
+    radial-gradient(circle at 80% 70%, rgba(255, 215, 0, 0.1) 0%, transparent 25%),
+    linear-gradient(135deg, rgba(0, 51, 102, 0.95) 0%, rgba(0, 20, 60, 0.98) 100%);
+  z-index: 1;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FFD700' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  z-index: 0;
+  opacity: 0.3;
+}
+
+
+.heroContainer {
+  position: relative;
+  z-index: 2;
   max-width: 800px;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  background-color: var(--foreground);
-  padding: 120px 60px;
 }
 
-.intro {
+.mainCopy {
+  font-size: 4rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #ffffff 0%, var(--secondary) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.1;
+}
+
+.leadCopy {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  font-family: var(--font-serif);
+  color: var(--secondary);
+}
+
+.subMessage {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  margin-bottom: 3rem;
+  opacity: 0.9;
+}
+
+.ctaGroup {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  gap: 24px;
-}
-
-.intro h1 {
-  max-width: 320px;
-  font-size: 40px;
-  font-weight: 600;
-  line-height: 48px;
-  letter-spacing: -2.4px;
-  text-wrap: balance;
-  color: var(--text-primary);
-}
-
-.intro p {
-  max-width: 440px;
-  font-size: 18px;
-  line-height: 32px;
-  text-wrap: balance;
-  color: var(--text-secondary);
-}
-
-.intro a {
-  font-weight: 500;
-  color: var(--text-primary);
-}
-
-.ctas {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  max-width: 440px;
-  gap: 16px;
-  font-size: 14px;
-}
-
-.ctas a {
-  display: flex;
+  gap: 1rem;
   justify-content: center;
+  margin-top: 2rem;
+}
+
+.ctaButton {
+  display: inline-flex;
   align-items: center;
-  height: 40px;
-  padding: 0 16px;
-  border-radius: 128px;
-  border: 1px solid transparent;
-  transition: 0.2s;
-  cursor: pointer;
-  width: fit-content;
-  font-weight: 500;
+  justify-content: center;
+  padding: 1rem 2rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-a.primary {
-  background: var(--text-primary);
-  color: var(--background);
-  gap: 8px;
+.ctaButton.primary {
+  background-color: var(--secondary);
+  color: var(--secondary-foreground);
+  box-shadow: 0 4px 14px 0 rgba(255, 215, 0, 0.39);
 }
 
-a.secondary {
-  border-color: var(--button-secondary-border);
+.ctaButton.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 215, 0, 0.23);
+  filter: brightness(1.1);
 }
 
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
-  }
+/* Sections General */
+.sectionTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
 
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
+.sectionSubtitle {
+  text-align: center;
+  color: var(--muted-foreground);
+  margin-bottom: 4rem;
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+}
+
+/* Paradox Section */
+.paradoxSection {
+  background-color: var(--background);
+  padding: 6rem 0;
+}
+
+.paradoxContent {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.paradoxStory {
+  font-size: 1.2rem;
+  line-height: 2;
+  color: var(--foreground);
+}
+
+.highlight {
+  background: linear-gradient(180deg, transparent 70%, rgba(255, 215, 0, 0.3) 70%);
+  font-weight: bold;
+}
+
+/* Skills Section */
+.skillsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.skillCard {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid var(--muted);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+  transition: all 0.3s ease;
+}
+
+.skillCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.05);
+  border-color: var(--secondary);
+}
+
+.skillIcon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.skillTitle {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+/* Roadmap Section */
+.roadmapSection {
+  background-color: var(--muted);
+}
+
+.roadmapContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.roadmapContainer::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, var(--muted-foreground) 0%, var(--secondary) 100%);
+  border-radius: 2px;
+}
+
+@media (min-width: 768px) {
+  .roadmapContainer::before {
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
 
-@media (max-width: 600px) {
-  .main {
-    padding: 48px 24px;
+.roadmapStep {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .roadmapStep {
+    width: 45%;
   }
 
-  .intro {
-    gap: 16px;
+  .roadmapStep:nth-child(odd) {
+    align-self: flex-start;
   }
 
-  .intro h1 {
-    font-size: 32px;
-    line-height: 40px;
-    letter-spacing: -1.92px;
+  .roadmapStep:nth-child(even) {
+    align-self: flex-end;
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
-  }
+.stepBadge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
 
-  .page {
-    --background: #000;
-    --foreground: #000;
+.badgeBasic {
+  background-color: #e2e8f0;
+  color: #475569;
+}
 
-    --text-primary: #ededed;
-    --text-secondary: #999;
+.badgeText {
+  background-color: #bae6fd;
+  color: #0369a1;
+}
 
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-    --button-secondary-border: #1a1a1a;
+.badgeApp {
+  background-color: #fef08a;
+  color: #854d0e;
+}
+
+/* Social Proof */
+.socialProofSection {
+  background-color: var(--primary);
+  color: white;
+  text-align: center;
+}
+
+.quoteCard {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 3rem;
+  border-radius: 16px;
+  max-width: 800px;
+  margin: 0 auto;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.quoteText {
+  font-size: 1.25rem;
+  font-style: italic;
+  font-family: var(--font-serif);
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+/* Utilities */
+.desktopBr {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .desktopBr {
+    display: block;
   }
 }

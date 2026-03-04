@@ -1,0 +1,29 @@
+.page {
+    padding-top: var(--header-height);
+    min-height: 100vh;
+}
+
+.faqContainer {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.faqCard {
+    padding: 2rem;
+    border-left: 4px solid var(--secondary);
+}
+
+.question {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.answer {
+    color: var(--foreground);
+    line-height: 1.8;
+}
