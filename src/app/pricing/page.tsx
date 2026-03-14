@@ -1,7 +1,46 @@
 import React from 'react';
 import { Section } from '@/components/ui/Section';
-import { Card } from '@/components/ui/Card';
+import { PricingTable } from '@/components/courses/PricingTable';
 import styles from './pricing.module.css';
+
+const pricingPlans = [
+    {
+        duration: 'Sprout コース',
+        description: '',
+        subGroups: [
+            {
+                label: '週1回',
+                plans: [
+                    { frequency: '各90分', monthlyPrice: '13,000' },
+                    { frequency: '各60分', monthlyPrice: '8,000' },
+                ],
+            },
+            {
+                label: '隔週2回',
+                plans: [
+                    { frequency: '各90分', monthlyPrice: '8,000' },
+                    { frequency: '各60分', monthlyPrice: '5,000' },
+                ],
+            },
+        ],
+    },
+    {
+        duration: 'Grow コース',
+        description: '',
+        plans: [
+            { frequency: '週1回', monthlyPrice: '13,000', timePerSession: '90分/回' },
+            { frequency: '隔週2回', monthlyPrice: '9,000', timePerSession: '90分/回' },
+        ],
+    },
+    {
+        duration: 'Bloom コース',
+        description: '',
+        plans: [
+            { frequency: '週1回', monthlyPrice: '18,000', timePerSession: '90分/回' },
+            { frequency: '隔週2回', monthlyPrice: '9,000', timePerSession: '90分/回' },
+        ],
+    },
+];
 
 export default function PricingPage() {
     return (
@@ -17,46 +56,7 @@ export default function PricingPage() {
             <Section background="muted">
                 <div className={styles.container}>
                     <h2 className={styles.sectionTitle}>コース別料金</h2>
-                    <div className={styles.grid}>
-                        <Card className={styles.pricingCard}>
-                            <h3>Sprout (旧 Basic) コース</h3>
-                            <div className={styles.price}>
-                                <span className={styles.amount}>11,000</span>
-                                <span className={styles.currency}>円/月（税込）</span>
-                            </div>
-                            <ul className={styles.features}>
-                                <li>月2回（1回90分）</li>
-                                <li>少人数制サポート</li>
-                                <li>振替制度あり</li>
-                            </ul>
-                        </Card>
-
-                        <Card className={styles.pricingCard}>
-                            <h3>Grow (旧 TextCoding) コース</h3>
-                            <div className={styles.price}>
-                                <span className={styles.amount}>13,200</span>
-                                <span className={styles.currency}>円/月（税込）</span>
-                            </div>
-                            <ul className={styles.features}>
-                                <li>月2回（1回90分）</li>
-                                <li>少人数制サポート</li>
-                                <li>振替制度あり</li>
-                            </ul>
-                        </Card>
-
-                        <Card className={styles.pricingCard}>
-                            <h3>Bloom (旧 Application Dev) コース</h3>
-                            <div className={styles.price}>
-                                <span className={styles.amount}>16,500</span>
-                                <span className={styles.currency}>円/月（税込）</span>
-                            </div>
-                            <ul className={styles.features}>
-                                <li>月2回（1回90分）</li>
-                                <li>個別プロジェクトメンター</li>
-                                <li>振替制度あり</li>
-                            </ul>
-                        </Card>
-                    </div>
+                    <PricingTable plans={pricingPlans} />
                 </div>
             </Section>
 
@@ -70,11 +70,7 @@ export default function PricingPage() {
                         </div>
                         <div className={styles.infoRow}>
                             <span className={styles.infoLabel}>教材費</span>
-                            <span className={styles.infoValue}>なし（一部市販の参考書を使用する場合は実費）</span>
-                        </div>
-                        <div className={styles.infoRow}>
-                            <span className={styles.infoLabel}>PCレンタル</span>
-                            <span className={styles.infoValue}>2,200円/月（お持ち込みの場合は無料です）</span>
+                            <span className={styles.infoValue}>なし（一部市販の参考書を使用する場合は別途ご相談）</span>
                         </div>
                     </div>
                 </div>

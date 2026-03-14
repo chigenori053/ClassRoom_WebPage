@@ -44,7 +44,7 @@
     width: 2rem;
     height: 2rem;
     background-color: var(--primary);
-    color: white;
+    color: var(--primary-foreground);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -85,6 +85,22 @@
     background-color: rgba(212, 175, 55, 0.1);
 }
 
+/* Course Intro Text */
+.courseIntro {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 3rem;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--muted-foreground);
+}
+
+/* Learning Image */
+.learningImg {
+  object-fit: cover;
+  border-radius: 12px;
+}
+
 /* Course Grid Layout */
 .courseGrid {
     display: grid;
@@ -108,8 +124,8 @@
 
 /* Learning Content Grid */
 .learningGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    display: flex;
+    flex-direction: column;
     gap: 2rem;
     margin-top: 2rem;
 }
@@ -130,7 +146,7 @@
 .learningTitle {
     font-size: 1.3rem;
     font-weight: 700;
-    color: #fff;
+    color: var(--primary);
     margin: 1.5rem 1.5rem 1rem;
     display: flex;
     flex-direction: column;
@@ -140,7 +156,7 @@
 .titleJa {
     font-size: 0.85rem;
     font-weight: 400;
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--muted-foreground);
 }
 
 .learningContent {
@@ -154,12 +170,12 @@
 
 .contentLabel {
     font-weight: 600;
-    color: #a78bfa;
+    color: var(--secondary);
     margin-bottom: 0.3rem;
 }
 
 .learningContent p:last-child {
-    color: rgba(255, 255, 255, 0.85);
+    color: var(--foreground);
     margin: 0;
 }
 
@@ -169,27 +185,53 @@
     margin: 0 auto;
     text-align: center;
     padding: 3rem 2rem;
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--accent);
+    border: 1px solid var(--accent-border);
     border-radius: 16px;
 }
 
 .messageHeadline {
     font-size: 1.8rem;
     font-weight: 700;
-    color: #fff;
+    color: var(--primary);
     margin-bottom: 1.5rem;
-    background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
 }
 
 .messageText {
     font-size: 1.1rem;
     line-height: 1.8;
-    color: rgba(255, 255, 255, 0.85);
+    color: var(--foreground);
+}
+
+/* Section Subtitle */
+.sectionSubtitle {
+    text-align: center;
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 2rem;
+}
+
+/* FAQ List (text-coding) */
+.faqList {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.faqCard {
+    padding: 1.5rem 2rem;
+}
+
+.faqCard h4 {
+    color: var(--primary);
+    margin-bottom: 0.75rem;
+}
+
+.faqCard p {
+    color: var(--foreground);
+    line-height: 1.8;
 }
 
 /* CTA Container */
@@ -203,23 +245,227 @@
     padding: 1.2rem 3rem;
     font-size: 1.2rem;
     font-weight: 700;
-    color: #fff;
-    background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
+    color: var(--secondary-foreground);
+    background: var(--secondary);
     border: none;
     border-radius: 50px;
     text-decoration: none;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 16px rgba(124, 58, 237, 0.4);
+    box-shadow: 0 4px 16px rgba(201, 123, 90, 0.3);
 }
 
 .ctaButton:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.6);
-    background: linear-gradient(135deg, #6d28d9 0%, #8b5cf6 100%);
+    box-shadow: 0 8px 24px rgba(201, 123, 90, 0.45);
+    background: var(--secondary-dark);
+    color: var(--secondary-foreground);
 }
 
 .ctaButton:active {
     transform: translateY(0);
+}
+
+/* Target Badge Row */
+.targetBadgeRow {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.targetBadge {
+    display: inline-block;
+    padding: 0.35rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--primary);
+    background: var(--accent);
+    border: 1px solid var(--accent-border);
+    border-radius: 2rem;
+    letter-spacing: 0.03em;
+}
+
+/* Class Flow */
+.flowList {
+    max-width: 640px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.flowItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+}
+
+.flowStep {
+    flex-shrink: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary);
+    color: var(--primary-foreground);
+    border-radius: 50%;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+.flowItem h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 0.4rem;
+}
+
+.flowItem p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--foreground);
+}
+
+/* Curriculum Grid */
+.curriculumGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.curriculumGrid .curriculumItem {
+    padding: 1.5rem;
+    background: var(--accent);
+    border: 1px solid var(--accent-border);
+    border-radius: 12px;
+    padding-left: 1.5rem;
+}
+
+.curriculumGrid .curriculumItem::before {
+    display: none;
+}
+
+.curriculumGrid .curriculumItem h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.curriculumGrid .curriculumItem p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--foreground);
+}
+
+/* Roadmap Grid */
+.roadmapGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.roadmapCard {
+    padding: 1.75rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    position: relative;
+}
+
+.roadmapPeriod {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--secondary);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+}
+
+.roadmapCard h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.roadmapCard p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--foreground);
+}
+
+/* Next Course Box */
+.nextCourseBox {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 2.5rem 2rem;
+    background: var(--card);
+    border: 1px solid var(--accent-border);
+    border-radius: 16px;
+}
+
+.nextCourseLabel {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--secondary);
+    margin-bottom: 0.75rem;
+}
+
+.nextCourseBox h3 {
+    font-size: 1.25rem;
+    color: var(--primary);
+    margin-bottom: 0.75rem;
+}
+
+.nextCourseBox p {
+    font-size: 0.95rem;
+    color: var(--muted-foreground);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.nextCourseLink {
+    display: inline-block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--secondary);
+    border-bottom: 1px solid var(--secondary);
+    padding-bottom: 0.1rem;
+    transition: opacity 0.2s ease;
+}
+
+.nextCourseLink:hover {
+    opacity: 0.7;
+    color: var(--secondary);
+}
+
+/* Pricing Note */
+.pricingNote {
+    font-size: 0.95rem;
+    color: var(--muted-foreground);
+    margin-bottom: 1.5rem;
+}
+
+.pricingLink {
+    color: var(--secondary);
+    font-weight: 600;
+    border-bottom: 1px solid var(--secondary);
+    padding-bottom: 0.1rem;
+    margin: 0 0.25rem;
+    transition: opacity 0.2s ease;
+}
+
+.pricingLink:hover {
+    opacity: 0.7;
+    color: var(--secondary);
 }
 
 /* Responsive adjustments for learning cards */
@@ -243,5 +489,17 @@
     .ctaButton {
         padding: 1rem 2rem;
         font-size: 1.1rem;
+    }
+
+    .curriculumGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .roadmapGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .flowItem {
+        gap: 1rem;
     }
 }

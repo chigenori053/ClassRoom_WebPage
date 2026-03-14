@@ -74,10 +74,9 @@ export function CourseCard({
                             <span
                                 className={styles.aiBadge}
                                 style={{
-                                    color: statusConfig.color,
-                                    backgroundColor: statusConfig.bgColor,
-                                    borderColor: statusConfig.color,
-                                }}
+                                    '--badge-color': statusConfig.color,
+                                    '--badge-bg': statusConfig.bgColor,
+                                } as React.CSSProperties}
                             >
                                 {statusConfig.label}
                             </span>

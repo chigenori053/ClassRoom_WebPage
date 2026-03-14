@@ -105,7 +105,9 @@
     border-radius: 9999px;
     font-size: 0.85rem;
     font-weight: 600;
-    border: 1.5px solid;
+    border: 1.5px solid var(--badge-color);
+    color: var(--badge-color);
+    background-color: var(--badge-bg);
     align-self: flex-start;
     transition: all 0.2s ease;
 }

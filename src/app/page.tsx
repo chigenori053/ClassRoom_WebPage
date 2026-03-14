@@ -1,12 +1,18 @@
-import React from 'react';
 import Link from 'next/link';
 import { Section } from '@/components/ui/Section';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
-import { NoteFeed } from '@/components/NoteFeed';
+import { prisma } from '@/lib/db';
 import styles from './home.module.css';
 
 export default async function Home() {
+  const latestArticles = await prisma.article.findMany({
+    where: { status: 'PUBLISHED' },
+    orderBy: { publishedAt: 'desc' },
+    take: 3,
+    select: { slug: true, title: true, summary: true, category: true, publishedAt: true },
+  });
+
   return (
     <div className={styles.page}>
       {/* 1. Hero Section */}
@@ -34,7 +40,7 @@ export default async function Home() {
               すぐに答えを出してもらっている。<br />
               そんな場面を見て、少し考えたことはありませんか。
             </p>
-            <p style={{ marginTop: '1rem' }}>
+            <p>
               便利な時代だからこそ、<br />
               自分で考える経験を、大切にしてあげたい。
             </p>
@@ -42,14 +48,7 @@ export default async function Home() {
         </div>
       </Section>
 
-      {/* 3. Reassurance Phrase */}
-      <section className={styles.reassuranceSection}>
-        <div className={styles.reassuranceContent}>
-          <p className={styles.reassuranceText}>楽しく、丁寧に、一人ひとりに合わせて。</p>
-        </div>
-      </section>
-
-      {/* 4. Declaration of Philosophy / Concept */}
+      {/* 3. Declaration of Philosophy / Concept */}
       <Section>
         <div className={styles.narrowContainer}>
           <h2 className={styles.storyTitle}>便利だからこそ、あえて制限する</h2>
@@ -60,7 +59,7 @@ export default async function Home() {
               うまくいかなくても、もう一度試してみる。<br />
               その地道な繰り返しの中に、本当の力が育つと信じているからです。
             </p>
-            <p style={{ marginTop: '1rem' }}>
+            <p>
               土台ができたら、少しずつAIを取り入れていく。<br />
               自分で考える力があってこそ、AIは本当の意味で使いこなせる。<br />
               それが、私たちの考える「AIとの向き合い方」です。
@@ -69,50 +68,71 @@ export default async function Home() {
         </div>
       </Section>
 
+      {/* 4. Reassurance Phrase */}
+      <section className={styles.reassuranceSection}>
+        <div className={styles.reassuranceOverlay} />
+        <div className={styles.reassuranceContent}>
+          <p className={styles.reassuranceText}>楽しく、丁寧に、一人ひとりに合わせて。</p>
+          <div className={styles.reassuranceBody}>
+            <p>
+              子どもの「わかった！」のタイミングは、みんな違います。<br />
+              急かさない。比べない。その子のペースで、一緒に考える。
+            </p>
+            <p>
+              「うちの子についていけるかな」という心配は、よく聞きます。<br />
+              進み方も、目標も、その子に合わせてつくりますので、ご安心ください。
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* 5. Courses (Strategic Restriction to AI Integration) */}
       <Section background="muted">
         <h2 className={styles.centerTitle}>自走力を育む、3つのステップ</h2>
         <div className={styles.grid3}>
-          <Card hoverEffect glass className={styles.courseCard}>
-            <h3>1. Sprout / 芽吹く</h3>
-            <p className={styles.courseSubtitle}>思考力の育成</p>
-            <p className={styles.courseDesc}>
-              使うツールはScratchやMinecraft。<br />
-              難しい構文も、複雑な数式も、まだ必要ありません。<br /><br />
-              大切なのは、自分の頭で考えること。<br />
-              うまくいかなくて当然。また試せばいい。<br />
-              その小さな繰り返しの中で、考える力の芽が、静かに育ちはじめます。
-            </p>
-            <Link href="/courses/basic" className={styles.cardLink}>コース詳細へ &rarr;</Link>
-          </Card>
+          <Link href="/courses/basic" className={styles.courseCardLink}>
+            <Card hoverEffect glass className={styles.courseCard}>
+              <h3>1. Sprout / 芽吹く</h3>
+              <p className={styles.courseSubtitle}>思考力の育成</p>
+              <p className={styles.courseDesc}>
+                使うツールはScratchやMinecraft。<br />
+                難しい構文も、複雑な数式も、まだ必要ありません。<br /><br />
+                大切なのは、自分の頭で考えること。<br />
+                うまくいかなくて当然。また試せばいい。<br />
+                その小さな繰り返しの中で、考える力の芽が、静かに育ちはじめます。
+              </p>
+            </Card>
+          </Link>
 
-          <Card hoverEffect glass className={styles.courseCard}>
-            <h3>2. Grow / 育てる</h3>
-            <p className={styles.courseSubtitle}>AIとの段階的接続</p>
-            <p className={styles.courseDesc}>
-              使うツールはPythonやJavaScript。<br />
-              ここから、本格的なコードと向き合います。<br /><br />
-              Sproutで育てた「自分で考える力」を土台に、<br />
-              少しずつAIを取り入れていく段階です。<br />
-              AIに頼るのではなく、AIと一緒に考える。<br />
-              その感覚を、じっくり身につけていきます。
-            </p>
-            <Link href="/courses/text-coding" className={styles.cardLink}>コース詳細へ &rarr;</Link>
-          </Card>
+          <Link href="/courses/text-coding" className={styles.courseCardLink}>
+            <Card hoverEffect glass className={styles.courseCard}>
+              <h3>2. Grow / 育てる</h3>
+              <p className={styles.courseSubtitle}>AIとの段階的接続</p>
+              <p className={styles.courseDesc}>
+                使うツールはPythonやJavaScript。<br />
+                ここから、本格的なコードと向き合います。<br /><br />
+                Sproutで育てた「自分で考える力」を土台に、<br />
+                少しずつAIを取り入れていく段階です。<br />
+                AIに頼るのではなく、AIと一緒に考える。<br />
+                その感覚を、じっくり身につけていきます。
+              </p>
+            </Card>
+          </Link>
 
-          <Card hoverEffect glass className={styles.courseCard}>
-            <h3>3. Bloom / 咲かせる</h3>
-            <p className={styles.courseSubtitle}>実社会的開発体験</p>
-            <p className={styles.courseDesc}>
-              作るのは、本物のアプリケーション。<br />
-              WebアプリでもスマホアプリでもDesktopアプリでも、<br />
-              作りたいものを、作りたい形で。<br /><br />
-              AIをフルに活用していいのが、このステージです。<br />
-              でもそれができるのは、自分で考える力が育っているから。<br />
-              Sproutから積み上げてきたものが、ここで花を咲かせます。
-            </p>
-            <Link href="/courses/app-dev" className={styles.cardLink}>コース詳細へ &rarr;</Link>
-          </Card>
+          <Link href="/courses/app-dev" className={styles.courseCardLink}>
+            <Card hoverEffect glass className={styles.courseCard}>
+              <h3>3. Bloom / 咲かせる</h3>
+              <p className={styles.courseSubtitle}>実社会的開発体験</p>
+              <p className={styles.courseDesc}>
+                作るのは、本物のアプリケーション。<br />
+                WebアプリでもスマホアプリでもDesktopアプリでも、<br />
+                作りたいものを、作りたい形で。<br /><br />
+                AIをフルに活用していいのが、このステージです。<br />
+                でもそれができるのは、自分で考える力が育っているから。<br />
+                Sproutから積み上げてきたものが、ここで花を咲かせます。
+              </p>
+            </Card>
+          </Link>
         </div>
       </Section>
 
@@ -124,21 +144,21 @@ export default async function Home() {
             <p>
               子どもたちは、私たちの想像をいつも超えていきます。
             </p>
-            <p style={{ marginTop: '1rem' }}>
+            <p>
               プログラムがうまく動かなくても、諦めずに取り組み続けた小学生がいました。<br />
               そしてある日、似たような問題に出会った瞬間、<br />
               自分でスッと解決してしまった。<br />
               その瞬間を見られたことが、私たちの喜びです。
             </p>
-            <p style={{ marginTop: '1rem' }}>
+            <p>
               企画から開発まで、自分の力だけで<br />
               オリジナルアプリを作り上げようとしている中学生がいる。
             </p>
-            <p style={{ marginTop: '1rem' }}>
+            <p>
               考える力は、静かに、でも確かに育っていきます。
             </p>
             {/* TODO: Add link to actual success cases page later if needed */}
-            <p style={{ marginTop: '2rem' }}>
+            <p className={styles.storyCtaLink}>
               <Link href="/column" className={styles.inlineLink}>
                 プロジェクト事例をもっと見る &rarr;
               </Link>
@@ -151,19 +171,37 @@ export default async function Home() {
       </Section>
 
       {/* 7. Column Preview */}
-      <Section background="muted">
-        <h2 className={styles.centerTitle}>KuKKAの視点 (Column)</h2>
-        <div className={styles.columnGrid}>
-          <React.Suspense fallback={<div style={{ textAlign: 'center', color: 'var(--muted-foreground)' }}><p>最新の記事を読み込み中...</p></div>}>
-            <NoteFeed />
-          </React.Suspense>
-        </div>
-        <div style={{ textAlign: 'center', marginTop: '3rem' }}>
-          <Link href="/column">
-            <Button variant="outline">すべての記事を読む</Button>
-          </Link>
-        </div>
-      </Section>
+      {latestArticles.length > 0 && (
+        <Section background="muted">
+          <h2 className={styles.centerTitle}>KuKKAの視点 (Column)</h2>
+          <div className={styles.columnGrid}>
+            {latestArticles.map((article) => (
+              <Link key={article.slug} href={`/column/${article.slug}`} className={styles.columnCardLink}>
+                <Card>
+                  <div className={styles.columnCard}>
+                    {article.publishedAt && (
+                      <p className={styles.columnDate}>
+                        {new Date(article.publishedAt).toLocaleDateString('ja-JP')}
+                      </p>
+                    )}
+                    {article.category && (
+                      <p className={styles.columnCategory}>{article.category}</p>
+                    )}
+                    <h3 className={styles.columnTitle}>{article.title}</h3>
+                    <p className={styles.columnSummary}>{article.summary}</p>
+                    <span className={styles.columnReadMore}>続きを読む →</span>
+                  </div>
+                </Card>
+              </Link>
+            ))}
+          </div>
+          <div className={styles.columnCtaWrapper}>
+            <Link href="/column">
+              <Button variant="outline">すべての記事を読む</Button>
+            </Link>
+          </div>
+        </Section>
+      )}
 
       {/* 8. Quiet Invitation (Booking CTA) */}
       <section className={styles.invitationSection}>

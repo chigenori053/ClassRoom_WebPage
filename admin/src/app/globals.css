@@ -17,6 +17,7 @@
 
   /* Accent: Sage green (card backgrounds, muted areas) */
   --accent: #F2F5EE;
+  --accent-light: #DCE8D6;
   --accent-border: #C8D5C0;
   --accent-dark: #7A9E7E;
   --accent-foreground: #3C3028;

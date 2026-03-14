@@ -1,0 +1,232 @@
+/* ===== Card base ===== */
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.card.open {
+    border-color: var(--accent-border);
+}
+
+/* ===== cardMain: 画像 + 本文の並び方 ===== */
+.cardMain {
+    display: flex;
+}
+
+/* layout="top" — 画像が上、本文が下 */
+.top .cardMain {
+    flex-direction: column;
+}
+
+/* layout="left" — 画像が左、本文が右 */
+.left .cardMain {
+    flex-direction: row;
+}
+
+/* layout="right" — 画像が右、本文が左 */
+.right .cardMain {
+    flex-direction: row-reverse;
+}
+
+/* ===== Image ===== */
+.imageWrapper {
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+/* top: 横幅いっぱい・固定高 */
+.top .imageWrapper {
+    width: 100%;
+    height: 220px;
+}
+
+/* left / right: 固定幅・高さは本文に合わせて伸縮 */
+.left .imageWrapper,
+.right .imageWrapper {
+    width: 38%;
+    min-height: 240px;
+}
+
+.image {
+    object-fit: cover;
+}
+
+/* ===== Body ===== */
+.body {
+    padding: 1.75rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.top .body {
+    padding: 1.5rem;
+}
+
+.title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary);
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.titleJa {
+    font-size: 0.82rem;
+    font-weight: 400;
+    color: var(--muted-foreground);
+}
+
+.description {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: var(--foreground);
+    margin-bottom: 1.25rem;
+}
+
+/* ===== Toggle button ===== */
+.toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--secondary);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    align-self: flex-start;
+}
+
+.toggle:hover {
+    opacity: 0.75;
+}
+
+.chevron {
+    display: inline-block;
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+    line-height: 1;
+}
+
+.chevronUp {
+    transform: rotate(180deg);
+}
+
+/* ===== Accordion ===== */
+.accordionBody {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s ease;
+}
+
+.accordionOpen {
+    grid-template-rows: 1fr;
+}
+
+.accordionInner {
+    overflow: hidden;
+}
+
+.accordionContent {
+    padding: 1.25rem 2rem 1.75rem;
+    display: flex;
+    gap: 3rem;
+    border-top: 1px solid var(--border);
+}
+
+.accordionSection {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    flex: 1;
+}
+
+.accordionLabel {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    color: var(--muted-foreground);
+    text-transform: uppercase;
+    margin: 0;
+}
+
+/* Tags */
+.tagList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tag {
+    display: inline-block;
+    padding: 0.3rem 0.85rem;
+    font-size: 0.8rem;
+    color: var(--primary);
+    background: var(--accent);
+    border: 1px solid var(--accent-border);
+    border-radius: 2rem;
+}
+
+/* Theme list */
+.themeList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.themeItem {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--foreground);
+    padding-left: 1rem;
+    position: relative;
+}
+
+.themeItem::before {
+    content: '–';
+    position: absolute;
+    left: 0;
+    color: var(--secondary);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    /* モバイルは全レイアウトで image-top に統一 */
+    .left .cardMain,
+    .right .cardMain {
+        flex-direction: column;
+    }
+
+    .left .imageWrapper,
+    .right .imageWrapper {
+        width: 100%;
+        height: 200px;
+        min-height: unset;
+    }
+
+    .body {
+        padding: 1.25rem;
+    }
+
+    .accordionContent {
+        flex-direction: column;
+        gap: 1.25rem;
+        padding: 1.25rem;
+    }
+}

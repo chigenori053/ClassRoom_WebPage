@@ -37,3 +37,18 @@ export async function updateBookingStatus(id: number, status: string) {
 
     revalidatePath('/bookings');
 }
+
+export async function updateInquiryStatus(id: number, status: string) {
+    const cookieStore = await cookies();
+    const auth = cookieStore.get('admin_auth');
+    if (auth?.value !== 'true') {
+        throw new Error('Unauthorized');
+    }
+
+    await prisma.inquiry.update({
+        where: { id },
+        data: { status },
+    });
+
+    revalidatePath('/inquiries');
+}

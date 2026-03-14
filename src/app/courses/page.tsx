@@ -13,13 +13,13 @@ export default function CoursesPage() {
             />
 
             <Section>
-                <p className="text-center max-w-2xl mx-auto mb-12" style={{ fontSize: '1.1rem', lineHeight: '1.8' }}>
+                <p className={styles.courseIntro}>
                     AIと人間が共創する社会へ。KuKKAでは、段階的にAI活用を解禁することで、<br />
                     真の「思考の筋力」と「AI活用力」を育みます。
                 </p>
                 <div className={styles.courseGrid}>
                     <CourseCard
-                        title="Sprout (旧 Basic) コース"
+                        title="Sprout コース"
                         href="/courses/basic"
                         imageSrc="/images/courses/basic-course.png"
                         imageAlt="Sprout Course - Scratch and Minecraft programming for kids"
@@ -29,7 +29,7 @@ export default function CoursesPage() {
                         description="プログラミング初学者向け。AIを禁止し、自分の頭で考える楽しさを学びます。"
                     />
                     <CourseCard
-                        title="Grow (旧 TextCoding) コース"
+                        title="Grow コース"
                         href="/courses/text-coding"
                         imageSrc="/images/courses/text-coding-course.png"
                         imageAlt="Grow Course - Python and JavaScript with partial AI assistance"
@@ -39,7 +39,7 @@ export default function CoursesPage() {
                         description="本格的なコーディングへ。AIを一部解禁し、学習を加速させます。"
                     />
                     <CourseCard
-                        title="Bloom (旧 Application Dev) コース"
+                        title="Bloom コース"
                         href="/courses/app-dev"
                         imageSrc="/images/courses/app-dev-course.png"
                         imageAlt="App Dev Course - Web and Native Apps with full AI integration"

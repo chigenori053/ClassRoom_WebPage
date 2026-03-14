@@ -26,8 +26,46 @@ model Article {
   updatedAt   DateTime  @updatedAt
 }
 
+model Schedule {
+  id          Int      @id @default(autoincrement())
+  title       String
+  startTime   DateTime
+  endTime     DateTime
+  description String?
+  location    String   @default("KuKKA プログラミング教室")
+  gasEventId  String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model TrialSlot {
+  id         Int      @id @default(autoincrement())
+  startTime  DateTime
+  endTime    DateTime
+  status     String   @default("OPEN") // OPEN | FULL | CLOSED
+  gasEventId String?
+  booking    Booking?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Inquiry {
+  id             Int      @id @default(autoincrement())
+  parentName     String
+  childName      String
+  childAge       String
+  email          String
+  phone          String?
+  course         String?
+  preferredDates String
+  message        String?
+  status         String   @default("NEW") // NEW, REPLIED, CLOSED
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
 model Booking {
-  id            Int      @id @default(autoincrement())
+  id            Int        @id @default(autoincrement())
   parentName    String
   childName     String
   childAge      String
@@ -35,8 +73,10 @@ model Booking {
   phone         String?
   course        String
   preferredDate DateTime
-  status        String   @default("PENDING") // PENDING, CONFIRMED, CANCELLED
+  status        String     @default("PENDING") // PENDING, CONFIRMED, CANCELLED
   notes         String?
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  trialSlotId   Int?       @unique
+  trialSlot     TrialSlot? @relation(fields: [trialSlotId], references: [id])
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
 }

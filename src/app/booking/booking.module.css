@@ -4,83 +4,294 @@
 }
 
 .container {
-    max-width: 700px;
+    max-width: 780px;
     margin: 0 auto;
-}
-
-.centerSection {
-    min-height: 60vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.successCard {
-    text-align: center;
-    padding: 4rem 2rem;
-    border-top: 4px solid var(--accent-dark);
-}
-
-.successTitle {
-    font-size: 2rem;
-    color: var(--primary);
-    margin-bottom: 1.5rem;
-}
-
-.successMessage {
-    line-height: 1.8;
-    color: var(--foreground);
-    margin-bottom: 2rem;
 }
 
 .policyText {
     text-align: center;
     line-height: 1.8;
     color: var(--foreground);
-    margin-bottom: 3rem;
-    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+    font-size: 1rem;
 }
 
-.formCard {
+/* ---- カレンダー全体 ---- */
+.calendarWrapper {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+}
+
+.loadingText {
+    text-align: center;
+    color: var(--muted-foreground);
     padding: 3rem;
 }
 
-.form {
+/* カレンダーヘッダー */
+.calendarHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.monthLabel {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.navBtn {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    width: 2.25rem;
+    height: 2.25rem;
+    font-size: 1.25rem;
+    cursor: pointer;
+    color: var(--foreground);
+    transition: background-color 0.15s, border-color 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navBtn:hover {
+    background-color: var(--muted);
+    border-color: var(--primary);
+}
+
+/* 曜日ヘッダー */
+.weekdayRow {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-bottom: 0.25rem;
+}
+
+.weekdayCell {
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--muted-foreground);
+    padding: 0.5rem 0;
+}
+
+.sunday { color: #dc2626; }
+.saturday { color: #2563eb; }
+
+/* カレンダーグリッド */
+.calendarGrid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+}
+
+.emptyCell {
+    aspect-ratio: 1;
+}
+
+.dayCell {
+    aspect-ratio: 1;
+    background: none;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    cursor: default;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    transition: background-color 0.15s, border-color 0.15s;
+    position: relative;
+}
+
+.dayCellPast {
+    opacity: 0.3;
+}
+
+.dayCellAvailable {
+    cursor: pointer;
+    border-color: var(--border);
+}
+
+.dayCellAvailable:hover {
+    background-color: var(--accent);
+    border-color: var(--secondary);
+}
+
+.dayCellSelected {
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+    color: white;
+}
+
+.dayCellToday .dayNumber {
+    font-weight: 700;
+    color: var(--secondary);
+}
+
+.dayCellSelected .dayNumber {
+    color: white;
+}
+
+.dayNumber {
+    font-size: 0.9rem;
+    line-height: 1;
+}
+
+.sundayText { color: #dc2626; }
+.saturdayText { color: #2563eb; }
+.dayCellSelected .sundayText,
+.dayCellSelected .saturdayText { color: white; }
+
+.slotDot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--secondary);
+    display: block;
+}
+
+.dayCellSelected .slotDot {
+    background-color: white;
+}
+
+/* 凡例 */
+.legendText {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    color: var(--muted-foreground);
+    margin-top: 0.75rem;
+}
+
+.legendDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--secondary);
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+/* 時間枠リスト */
+.slotSection {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+}
+
+.slotSectionTitle {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.slotList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.slotBtn {
+    padding: 0.6rem 1.25rem;
+    border: 1.5px solid var(--border);
+    border-radius: 9999px;
+    background: none;
+    font-size: 0.95rem;
+    cursor: pointer;
+    color: var(--foreground);
+    transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+    font-family: inherit;
+}
+
+.slotBtn:hover {
+    border-color: var(--secondary);
+    color: var(--secondary);
+}
+
+.slotBtnSelected {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+    color: white;
+    font-weight: 700;
+}
+
+/* 予約フォーム */
+.formSection {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+}
+
+.selectedInfo {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    background: var(--accent);
+    border-left: 4px solid var(--secondary);
+    padding: 0.75rem 1.25rem;
+    border-radius: 0 var(--radius) var(--radius) 0;
+    margin-bottom: 1.75rem;
+}
+
+.selectedInfoLabel {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--muted-foreground);
+    flex-shrink: 0;
+}
+
+.selectedInfoValue {
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 1rem;
+}
+
+.formGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
 }
 
 .formGroup {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.4rem;
 }
 
 .formGroup label {
     font-weight: 600;
     color: var(--primary);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
 }
 
 .required {
     background-color: var(--secondary-light);
     color: var(--secondary-dark);
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     padding: 0.1rem 0.4rem;
     border-radius: 4px;
-    margin-left: 0.5rem;
+    margin-left: 0.4rem;
     vertical-align: middle;
 }
 
 .input {
-    padding: 0.75rem 1rem;
+    padding: 0.65rem 0.9rem;
     border: 1px solid var(--border);
     border-radius: var(--radius);
     font-family: inherit;
-    font-size: 1rem;
+    font-size: 0.95rem;
     background-color: var(--input);
     transition: border-color 0.2s, box-shadow 0.2s;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .input:focus {
@@ -89,26 +300,71 @@
     box-shadow: 0 0 0 2px rgba(74, 85, 104, 0.1);
 }
 
-textarea.input {
-    resize: vertical;
-}
-
 .errorMessage {
     background-color: #FEE2E2;
     color: #B91C1C;
-    padding: 1rem;
+    padding: 0.75rem 1rem;
     border-radius: var(--radius);
     font-size: 0.9rem;
-    text-align: center;
+    margin-bottom: 1rem;
 }
 
 .submitSection {
-    margin-top: 1rem;
     text-align: center;
 }
 
+/* 成功表示 */
+.successBox {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    border-top: 4px solid var(--secondary);
+}
+
+.successTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.successDesc {
+    line-height: 1.8;
+    color: var(--foreground);
+}
+
+/* お問い合わせ誘導 */
+.contactNote {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--muted-foreground);
+    line-height: 1.8;
+}
+
+.contactLink {
+    color: var(--secondary);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
 @media (max-width: 768px) {
-    .formCard {
-        padding: 2rem 1.5rem;
+    .calendarWrapper {
+        padding: 1.25rem;
+    }
+
+    .dayCell {
+        border-radius: 6px;
+    }
+
+    .dayNumber {
+        font-size: 0.8rem;
+    }
+
+    .formGrid {
+        grid-template-columns: 1fr;
     }
 }

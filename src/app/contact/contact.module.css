@@ -1,0 +1,139 @@
+.page {
+    padding-top: var(--header-height);
+    min-height: 100vh;
+}
+
+.centerSection {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+/* 誘導メッセージ */
+.notice {
+    background: var(--accent);
+    border-left: 4px solid var(--secondary);
+    padding: 1rem 1.25rem;
+    border-radius: 0 var(--radius) var(--radius) 0;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--foreground);
+}
+
+.noticeLink {
+    color: var(--secondary);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* フォーム */
+.formCard {
+    padding: 2.5rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.formGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.formGroup label {
+    font-weight: 600;
+    color: var(--primary);
+    font-size: 0.9rem;
+}
+
+.required {
+    background-color: var(--secondary-light);
+    color: var(--secondary-dark);
+    font-size: 0.7rem;
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    margin-left: 0.4rem;
+    vertical-align: middle;
+}
+
+.input {
+    padding: 0.65rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-family: inherit;
+    font-size: 0.95rem;
+    background-color: var(--input);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(74, 85, 104, 0.1);
+}
+
+textarea.input {
+    resize: vertical;
+}
+
+.errorMessage {
+    background-color: #FEE2E2;
+    color: #B91C1C;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.submitSection {
+    text-align: center;
+}
+
+/* 成功 */
+.successCard {
+    text-align: center;
+    padding: 4rem 2rem;
+    border-top: 4px solid var(--secondary);
+}
+
+.successTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.successDesc {
+    line-height: 1.8;
+    color: var(--foreground);
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+    .formCard {
+        padding: 1.75rem 1.25rem;
+    }
+
+    .formGrid {
+        grid-template-columns: 1fr;
+    }
+}

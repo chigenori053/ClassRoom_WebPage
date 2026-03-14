@@ -4,6 +4,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { websiteSchema, localBusinessSchema } from '@/lib/json-ld';
 import './globals.css';
+import styles from './layout.module.css';
 
 const notoSansJP = Noto_Sans_JP({ subsets: ['latin'], weight: ['400', '500', '700'], variable: '--font-sans' });
 const notoSerifJP = Noto_Serif_JP({ subsets: ['latin'], weight: ['400', '700'], variable: '--font-serif' });
@@ -23,7 +24,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja" suppressHydrationWarning className={`${notoSansJP.variable} ${notoSerifJP.variable}`}>
-      <body suppressHydrationWarning style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <body suppressHydrationWarning className={styles.body}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
@@ -46,7 +47,7 @@ export default function RootLayout({
           }}
         />
         <Header />
-        <main style={{ flex: 1 }}>
+        <main className={styles.main}>
           {children}
         </main>
         <Footer />
