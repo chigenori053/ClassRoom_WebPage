@@ -1,8 +1,14 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { Section } from '@/components/ui/Section';
 import { Card } from '@/components/ui/Card';
 import styles from '../courses.module.css';
+
+export const metadata: Metadata = {
+    title: 'Bloom コース（アプリ開発） | KuKKA',
+    description: 'AIをフル活用し、Web・ネイティブアプリの企画から開発までを実践するBloomコースをご紹介します。',
+};
 
 export default function AppDevCoursePage() {
     return (

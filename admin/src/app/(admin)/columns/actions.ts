@@ -4,8 +4,11 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { prisma } from '@/lib/db';
 import { generateSlug } from '@/lib/slug';
+import { requireAdminAuth } from '@/lib/auth';
 
 export async function createArticle(formData: FormData) {
+  await requireAdminAuth();
+
   const title = formData.get('title') as string;
   const summary = formData.get('summary') as string;
   const body = formData.get('body') as string;
@@ -25,6 +28,8 @@ export async function createArticle(formData: FormData) {
 }
 
 export async function updateArticle(id: number, formData: FormData) {
+  await requireAdminAuth();
+
   const title = formData.get('title') as string;
   const summary = formData.get('summary') as string;
   const body = formData.get('body') as string;
@@ -45,6 +50,8 @@ export async function updateArticle(id: number, formData: FormData) {
 }
 
 export async function publishArticle(id: number) {
+  await requireAdminAuth();
+
   await prisma.article.update({
     where: { id },
     data: { status: 'PUBLISHED', publishedAt: new Date() },
@@ -53,6 +60,8 @@ export async function publishArticle(id: number) {
 }
 
 export async function unpublishArticle(id: number) {
+  await requireAdminAuth();
+
   await prisma.article.update({
     where: { id },
     data: { status: 'DRAFT', publishedAt: null },
@@ -61,6 +70,8 @@ export async function unpublishArticle(id: number) {
 }
 
 export async function deleteArticle(id: number) {
+  await requireAdminAuth();
+
   await prisma.article.delete({ where: { id } });
   revalidatePath('/columns');
 }

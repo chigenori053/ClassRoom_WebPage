@@ -1,8 +1,13 @@
-import React from 'react';
+import type { Metadata } from 'next';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { Section } from '@/components/ui/Section';
 import { CourseCard } from '@/components/courses/CourseCard';
 import styles from './courses.module.css';
+
+export const metadata: Metadata = {
+    title: 'コース紹介 | KuKKA',
+    description: 'Sprout・Grow・Bloomの3段階で、AI活用を段階的に解禁しながら「思考の筋力」と「AI活用力」を育むKuKKAのコースをご紹介します。',
+};
 
 export default function CoursesPage() {
     return (

@@ -105,8 +105,8 @@ The new site presents three step-by-step courses:
 - **UI Library:** React (v19.2.3)
 - **Language:** TypeScript
 - **Styling:** CSS Modules (`globals.css`, `*.module.css`) を用いて、余白を活かした静謐なデザインシステムを構築。
-- **Blog Integration:** note.com の RSSフィード（または公開API）を取得し、自社サイト内の「思想を補強するコラム」として静かに配置。
-- **Reservation System & Dashboard:** 思想に共感した保護者がストレスなく辿り着けるよう、体験教室の予約用フロントエンドと、それを管理するAdmin DashboardをNext.jsのAPI Routes/Server Actionsを用いてシームレスに構築。
+- **Blog Integration:** 当初はnote.com RSSフィード連携を想定していたが、Prisma + PostgreSQLによる自前CMS（`admin/`の管理画面でMarkdown執筆・公開）に方針変更し実装済み。「思想を補強するコラム」として`/column`に静かに配置。
+- **Reservation System & Dashboard:** 思想に共感した保護者がストレスなく辿り着けるよう、体験教室の予約用フロントエンドと、それを管理するAdmin DashboardをNext.jsのAPI Routes/Server Actionsを用いてシームレスに構築。Admin Dashboardは公開サイトとは別デプロイの独立したNext.jsアプリ（`admin/`、ポート3001）として実装し、同じPostgreSQLデータベースを共有する。
 - **SEO / メタデータ:** `next/default` のメタデータAPI、および JSON-LD による構造化データ。
 - **Typography:** `next/font/google` による最適化。明朝体（Noto Serif JP等）を効果的に用い、言葉の重みと知性を強調する。
 
@@ -116,8 +116,8 @@ The new site presents three step-by-step courses:
 - **UI Library:** React (v19.2.3)
 - **Language:** TypeScript
 - **Styling:** CSS Modules (`globals.css`, `*.module.css`) to build a serene design system prioritizing white space.
-- **Blog Integration:** Fetch note.com content via RSS/API, placed quietly as "columns reinforcing the philosophy."
-- **Reservation System & Dashboard:** Build a seamless booking front-end and Admin Dashboard via API Routes/Server Actions, ensuring a stress-free experience for parents who resonate with the message.
+- **Blog Integration:** Originally planned as note.com RSS integration; implemented instead as a self-hosted CMS (Prisma + PostgreSQL, authored via the `admin/` dashboard) surfaced quietly at `/column` as "columns reinforcing the philosophy."
+- **Reservation System & Dashboard:** Build a seamless booking front-end and Admin Dashboard via API Routes/Server Actions, ensuring a stress-free experience for parents who resonate with the message. The Admin Dashboard is implemented as a separate Next.js app (`admin/`, port 3001) with its own deployment, sharing the same PostgreSQL database.
 - **SEO / Metadata:** Built-in Next.js metadata API and JSON-LD structural data.
 - **Typography:** Optimized via `next/font/google`. Effective use of serif fonts (e.g., Noto Serif JP) to emphasize the gravity and intellect of the words.
 
@@ -128,7 +128,7 @@ The new site presents three step-by-step courses:
 - [ ] **思想表明型デザイン（ブランドサイトUI）の実装:** 情報を詰め込まず、言葉の密度と余白（ホワイトスペース）、タイポグラフィの美しさを際立たせるトップページの再設計。ただし、トップページのボリュームが過大にならないよう調整する。
 - [ ] 「不安の代弁」から「解決策（コース）」へ至る、感情的納得プロセス（ストーリー）に基づくコンポーネントの配置。適所に「安心のワンフレーズ」を挟む。
 - [ ] **成果事例ページの設計:** 思想を証明する具体的なエビデンス（子どもの変化、プロジェクト例）を提示する下層ページの構築。
-- [ ] **動的コンテンツの連携:** note のRSSフィード連携によるブログ記事の自動・一覧表示（思想の補強材料として機能させる）。
+- [x] **動的コンテンツの連携:** 実装済み。note RSS連携ではなく、自前CMS（`admin/`の管理画面でMarkdown記事を執筆・公開、Prisma + PostgreSQLで管理）による記事一覧表示に方針変更して対応。
 - [ ] **静かなる導線設計と予約システムの構築:** 各セクションに追従する予約ボタンを廃止し、理念を読み終えた最下部における「共感した方への招待」としての予約フロー（フロントエンド・バックエンド・ダッシュボード）の実装。
 - [ ] 空間の静謐さを損なわない、上品で抑制の効いたCSSアニメーション（フェードイン等）の適用。
 
@@ -136,6 +136,6 @@ The new site presents three step-by-step courses:
 - [ ] **Philosophy-Driven Design (Brand Site UI) Implementation:** Redesigning the top page to emphasize word density, beautiful typography, and white space, avoiding information overload. Ensure the top page volume does not become excessive.
 - [ ] Arranging components based on the emotional justification process (story), moving from "Empathy with Anxiety" to "The Solution (Courses)." Insert reassuring phrases where appropriate.
 - [ ] **Success Cases Page Design:** Building a sub-page to present concrete evidence (children's growth, project examples) that proves the philosophy.
-- [ ] **Dynamic Content Integration:** Automatically displaying note.com articles via RSS feed (functioning as reinforcement for the school's philosophy).
+- [x] **Dynamic Content Integration:** Implemented. Replaced the planned note.com RSS integration with a self-hosted CMS (Markdown articles authored/published via the `admin/` dashboard, managed with Prisma + PostgreSQL).
 - [ ] **Quiet Routing & Booking System Construction:** Eliminating sticky booking buttons in favor of an "invitation to those who empathize" placed at the bottom after the philosophy has been read (Front-end, Back-end, and Admin Dashboard).
 - [ ] Applying elegant, restrained CSS animations (e.g., subtle fade-ins) that do not disrupt the tranquility of the space.

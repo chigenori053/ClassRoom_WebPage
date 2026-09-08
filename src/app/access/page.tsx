@@ -1,8 +1,13 @@
-import React from 'react';
+import type { Metadata } from 'next';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { Section } from '@/components/ui/Section';
 import { Card } from '@/components/ui/Card';
 import styles from './access.module.css';
+
+export const metadata: Metadata = {
+    title: '教室へのアクセス | KuKKA',
+    description: 'KuKKAプログラミング教室の各教室の所在地・地図をご案内します。',
+};
 
 export default function AccessPage() {
     return (
@@ -14,13 +19,13 @@ export default function AccessPage() {
 
             <Section>
                 <div className={styles.locations}>
-                    {/* Maebashi */}
+                    {/* Maebashi ※ダミー住所（公開前に正式住所へ差し替え） */}
                     <Card className={styles.locationCard}>
                         <h3>前橋教室</h3>
-                        <p className={styles.address}>〒371-0000 群馬県前橋市...</p>
+                        <p className={styles.address}>〒371-0022 群馬県前橋市千代田町1-2-3 KuKKAビル2F</p>
                         <div className={styles.mapContainer}>
                             <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3211.5!2d139.0!3d36.3!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzbCsDE4JzAwLjAiTiAxMznCsDAwJzAwLjAiRQ!5e0!3m2!1sja!2sjp!4v1600000000000!5m2!1sja!2sjp"
+                                src="https://www.google.com/maps?q=36.3907,139.0634&z=16&output=embed"
                                 width="100%"
                                 height="100%"
                                 className={styles.mapFrame}
@@ -31,13 +36,13 @@ export default function AccessPage() {
                         </div>
                     </Card>
 
-                    {/* SO Lab Takasaki */}
+                    {/* Hikari Lab Takasaki ※ダミー住所（公開前に正式住所へ差し替え） */}
                     <Card className={styles.locationCard}>
-                        <h3>SOラボ教室 (高崎)</h3>
-                        <p className={styles.address}>〒370-0000 群馬県高崎市...</p>
+                        <h3>ヒカリラボ高崎教室</h3>
+                        <p className={styles.address}>〒370-0849 群馬県高崎市八島町1-1 ヒカリラボビル3F</p>
                         <div className={styles.mapContainer}>
                             <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3211.5!2d139.0!3d36.3!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzbCsDE4JzAwLjAiTiAxMznCsDAwJzAwLjAiRQ!5e0!3m2!1sja!2sjp!4v1600000000000!5m2!1sja!2sjp"
+                                src="https://www.google.com/maps?q=36.3221,139.0035&z=16&output=embed"
                                 width="100%"
                                 height="100%"
                                 className={styles.mapFrame}

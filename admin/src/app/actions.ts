@@ -4,6 +4,7 @@ import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { prisma } from '@/lib/db';
 import { revalidatePath } from 'next/cache';
+import { requireAdminAuth } from '@/lib/auth';
 
 export async function login(formData: FormData) {
     const password = formData.get('password');
@@ -24,11 +25,7 @@ export async function logout() {
 }
 
 export async function updateBookingStatus(id: number, status: string) {
-    const cookieStore = await cookies();
-    const auth = cookieStore.get('admin_auth');
-    if (auth?.value !== 'true') {
-        throw new Error('Unauthorized');
-    }
+    await requireAdminAuth();
 
     await prisma.booking.update({
         where: { id },
@@ -39,11 +36,7 @@ export async function updateBookingStatus(id: number, status: string) {
 }
 
 export async function updateInquiryStatus(id: number, status: string) {
-    const cookieStore = await cookies();
-    const auth = cookieStore.get('admin_auth');
-    if (auth?.value !== 'true') {
-        throw new Error('Unauthorized');
-    }
+    await requireAdminAuth();
 
     await prisma.inquiry.update({
         where: { id },
