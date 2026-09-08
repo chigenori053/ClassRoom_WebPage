@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { prisma } from '@/lib/db';
@@ -5,10 +6,13 @@ import { PageHeader } from '@/components/ui/PageHeader';
 import { Section } from '@/components/ui/Section';
 import styles from './column.module.css';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'COLUMN | KuKKA',
   description: 'KuKKAの教育観・日々の気づきをコラムでお届けします。',
 };
+
+// 管理画面（別アプリ）での記事公開・更新をビルドなしで即座に反映するため、静的プリレンダリングを無効化する
+export const dynamic = 'force-dynamic';
 
 export default async function ColumnPage() {
   const articles = await prisma.article.findMany({

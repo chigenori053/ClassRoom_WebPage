@@ -40,6 +40,8 @@ Version: 1.1
 
 ## 3. サイト構成（実装ページ）
 
+**公開サイト（リポジトリルート、Next.js App Router / ポート3000）：**
+
 ```
 /                    # トップ（思想表明・ヒーロー・コース紹介・CTA）
 /courses             # コース詳細（Sprout / Grow / Bloom）
@@ -47,12 +49,25 @@ Version: 1.1
 /faq                 # よくある質問
 /access              # 教室へのアクセス
 /booking             # 体験レッスン予約フォーム
-/column              # note.com RSSフィード連携コラム
-/contact             # お問い合わせ
-/admin               # 管理者ダッシュボード（予約管理）
+/column              # コラム（自前CMS。管理画面で執筆・公開した記事をPostgreSQL経由で表示）
+/contact             # お問い合わせ（掲載日程外の体験教室希望など）
 ```
 
-各ページを実装・編集する際は、このサイト構成を常に参照する。
+**管理画面（`admin/` 配下・別Next.jsアプリ / ポート3001）：**
+
+管理画面は公開サイトとは別デプロイの独立したNext.jsプロジェクトとして `admin/` に実装されている（`npm run dev:admin` で起動）。公開サイトと同じPostgreSQLデータベースを共有し、Cookie（`admin_auth`）によるログイン保護がかかっている。
+
+```
+/                    # ログイン
+/dashboard           # ダッシュボード（未確認の予約・問い合わせ件数など）
+/bookings            # 体験レッスン予約管理
+/schedules           # 授業スケジュール管理（Google Apps Script経由でGoogleカレンダーと連携）
+/calendar            # カレンダー表示
+/inquiries           # スケジュール外お問い合わせ管理
+/columns             # コラム記事の執筆・公開管理（Markdown）
+```
+
+各ページを実装・編集する際は、このサイト構成を常に参照する。管理画面に手を入れる際は対象が `admin/` 配下であることを確認する。
 
 ---
 

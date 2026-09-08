@@ -1,8 +1,14 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { Section } from '@/components/ui/Section';
 import { Card } from '@/components/ui/Card';
 import styles from '../courses.module.css';
+
+export const metadata: Metadata = {
+    title: 'Grow コース（Python・JavaScript） | KuKKA',
+    description: 'Python・JavaScriptによる本格的なコーディングに、AIを一部解禁しながら取り組むGrowコースをご紹介します。',
+};
 
 export default function TextCodingCoursePage() {
     return (

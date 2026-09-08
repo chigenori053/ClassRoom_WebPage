@@ -2,31 +2,20 @@ import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
-export async function POST(req: Request) {
+async function sendInquiryNotification(params: {
+    parentName: string;
+    childName: string;
+    childAge: string;
+    email: string;
+    phone?: string;
+    course?: string;
+    preferredDates: string;
+    message?: string;
+}) {
+    const { parentName, childName, childAge, email, phone, course, preferredDates, message } = params;
     try {
-        const body = await req.json();
-        const { parentName, childName, childAge, email, phone, course, preferredDates, message } = body;
-
-        if (!parentName || !childName || !childAge || !email || !preferredDates) {
-            return NextResponse.json({ error: '必須項目が入力されていません。' }, { status: 400 });
-        }
-
-        const inquiry = await prisma.inquiry.create({
-            data: {
-                parentName,
-                childName,
-                childAge,
-                email,
-                phone: phone || null,
-                course: course || null,
-                preferredDates,
-                message: message || null,
-            },
-        });
-
-        await resend.emails.send({
+        const resend = new Resend(process.env.RESEND_API_KEY);
+        const { error } = await resend.emails.send({
             from: process.env.FROM_EMAIL ?? 'noreply@kukka.info',
             to: process.env.ADMIN_EMAIL ?? 'takahashi_s@kukka.info',
             subject: `【KuKKA】体験教室 お問い合わせ（${parentName}様）`,
@@ -77,6 +66,37 @@ export async function POST(req: Request) {
 </body>
 </html>`,
         });
+        if (error) {
+            console.error('Contact notification email failed:', error);
+        }
+    } catch (error) {
+        console.error('Contact notification email error (inquiry itself succeeded):', error);
+    }
+}
+
+export async function POST(req: Request) {
+    try {
+        const body = await req.json();
+        const { parentName, childName, childAge, email, phone, course, preferredDates, message } = body;
+
+        if (!parentName || !childName || !childAge || !email || !preferredDates) {
+            return NextResponse.json({ error: '必須項目が入力されていません。' }, { status: 400 });
+        }
+
+        const inquiry = await prisma.inquiry.create({
+            data: {
+                parentName,
+                childName,
+                childAge,
+                email,
+                phone: phone || null,
+                course: course || null,
+                preferredDates,
+                message: message || null,
+            },
+        });
+
+        await sendInquiryNotification({ parentName, childName, childAge, email, phone, course, preferredDates, message });
 
         return NextResponse.json({ success: true, inquiry }, { status: 201 });
     } catch (error) {

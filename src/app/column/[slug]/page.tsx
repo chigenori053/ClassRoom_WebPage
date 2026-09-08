@@ -12,6 +12,9 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
+// 管理画面（別アプリ）での記事公開・更新をビルドなしで即座に反映するため、静的プリレンダリングを無効化する
+export const dynamic = 'force-dynamic';
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const article = await prisma.article.findUnique({ where: { slug } });

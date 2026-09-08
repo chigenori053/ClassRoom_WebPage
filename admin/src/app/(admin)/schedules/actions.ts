@@ -4,6 +4,7 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { prisma } from '@/lib/db';
 import { gasCreateEvent, gasUpdateEvent, gasDeleteEvent } from '@/lib/gas';
+import { requireAdminAuth } from '@/lib/auth';
 
 /** datetime-local 入力値（ローカル時刻）を JST として Date に変換 */
 function parseJST(str: string): Date {
@@ -11,6 +12,8 @@ function parseJST(str: string): Date {
 }
 
 export async function createSchedule(formData: FormData) {
+  await requireAdminAuth();
+
   const title = formData.get('title') as string;
   const startTime = formData.get('startTime') as string;
   const endTime = formData.get('endTime') as string;
@@ -44,6 +47,8 @@ export async function createSchedule(formData: FormData) {
 }
 
 export async function updateSchedule(id: number, formData: FormData) {
+  await requireAdminAuth();
+
   const title = formData.get('title') as string;
   const startTime = formData.get('startTime') as string;
   const endTime = formData.get('endTime') as string;
@@ -86,6 +91,8 @@ export async function updateSchedule(id: number, formData: FormData) {
 }
 
 export async function deleteSchedule(id: number) {
+  await requireAdminAuth();
+
   const schedule = await prisma.schedule.findUnique({ where: { id } });
 
   if (schedule?.gasEventId) {

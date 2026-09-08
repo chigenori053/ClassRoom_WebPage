@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# KuKKA Webページ
 
-## Getting Started
+プログラミング教室KuKKAの公開サイトと管理画面。詳しいプロジェクト方針・コーディング規約は [CLAUDE.md](CLAUDE.md) を参照。
 
-First, run the development server:
+## 構成
+
+このリポジトリには独立した2つのNext.jsアプリが含まれる。
+
+- **公開サイト**（リポジトリルート、ポート3000）: トップ・コース紹介・料金・FAQ・アクセス・体験予約・コラム・お問い合わせ
+- **管理画面**（`admin/`、ポート3001）: 予約管理・スケジュール管理（Googleカレンダー連携）・お問い合わせ管理・コラム記事の執筆/公開
+
+両アプリは同じPostgreSQLデータベースを参照する（それぞれ独自のPrisma schema・migrationsを持つ）。
+
+## セットアップ
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+cd admin && npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+環境変数は `.env.example` / `admin/.env.example` を参照し、それぞれ `.env.local` としてコピー・設定する。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+cp .env.example .env.local
+cp admin/.env.example admin/.env.local
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Prismaのマイグレーションを適用する（公開サイト・管理画面それぞれ）。
 
-## Learn More
+```bash
+npx prisma migrate deploy
+cd admin && npm run db:migrate
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 開発サーバー
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run dev          # 公開サイト（http://localhost:3000）
+npm run dev:admin    # 管理画面（http://localhost:3001）
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## ビルド
 
-## Deploy on Vercel
+```bash
+npm run build         # 公開サイト
+npm run build:admin   # 管理画面
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Lint
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run lint
+```

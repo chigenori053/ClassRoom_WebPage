@@ -1,8 +1,13 @@
-import React from 'react';
+import type { Metadata } from 'next';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { Section } from '@/components/ui/Section';
 import { Card } from '@/components/ui/Card';
 import styles from './faq.module.css';
+
+export const metadata: Metadata = {
+    title: 'よくある質問 | KuKKA',
+    description: 'プログラミング未経験の方、パソコンの持ち込み、振替、コース選びなど、KuKKAプログラミング教室によくいただくご質問にお答えします。',
+};
 
 export default function FAQPage() {
     const faqs = [

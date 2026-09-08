@@ -1,9 +1,18 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Section } from '@/components/ui/Section';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { prisma } from '@/lib/db';
 import styles from './home.module.css';
+
+// 管理画面（別アプリ）での記事公開・更新をビルドなしで即座に反映するため、静的プリレンダリングを無効化する
+export const dynamic = 'force-dynamic';
+
+export const metadata: Metadata = {
+    title: 'KuKKA - Fun and Growth | AI時代のプログラミングスクール',
+    description: 'AIがある時代だからこそ、自分の頭で考えられる子に育ってほしい。群馬のプログラミング教室KuKKAが、Sprout・Grow・Bloomの3段階で「思考の筋力」と「AI活用力」を育みます。',
+};
 
 export default async function Home() {
   const latestArticles = await prisma.article.findMany({

@@ -1,8 +1,14 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { Section } from '@/components/ui/Section';
 import { LearningCard } from '@/components/courses/LearningCard';
 import styles from '../courses.module.css';
+
+export const metadata: Metadata = {
+    title: 'Sprout コース（Scratch・マイクラ） | KuKKA',
+    description: 'AIを使わず、Scratchやマインクラフトで「自分で考える力」の土台を育むSproutコースをご紹介します。',
+};
 
 export default function BasicCoursePage() {
     return (

@@ -1,7 +1,12 @@
-import React from 'react';
+import type { Metadata } from 'next';
 import { Section } from '@/components/ui/Section';
 import { PricingTable } from '@/components/courses/PricingTable';
 import styles from './pricing.module.css';
+
+export const metadata: Metadata = {
+    title: '料金とシステム | KuKKA',
+    description: 'KuKKAプログラミング教室の月謝・受講頻度・時間帯プランをコースごとにご案内します。',
+};
 
 const pricingPlans = [
     {
