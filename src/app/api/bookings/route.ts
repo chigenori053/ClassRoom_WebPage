@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import { Resend } from 'resend';
 import type { Booking, TrialSlot } from '@prisma/client';
+import { escapeHtml } from '@/lib/escapeHtml';
 
 function formatSlotDateTime(slot: TrialSlot) {
     const date = slot.startTime.toLocaleDateString('ja-JP', {
@@ -17,6 +18,13 @@ function formatSlotDateTime(slot: TrialSlot) {
 }
 
 async function sendBookingEmails(booking: Booking, slot: TrialSlot) {
+    const parentName = escapeHtml(booking.parentName);
+    const childName = escapeHtml(booking.childName);
+    const childAge = escapeHtml(booking.childAge);
+    const course = escapeHtml(booking.course);
+    const email = escapeHtml(booking.email);
+    const phone = booking.phone ? escapeHtml(booking.phone) : booking.phone;
+
     try {
         const resend = new Resend(process.env.RESEND_API_KEY);
         const from = process.env.FROM_EMAIL ?? 'noreply@kukka.info';
@@ -34,7 +42,7 @@ async function sendBookingEmails(booking: Booking, slot: TrialSlot) {
   <h2 style="color: #4a5568; border-bottom: 2px solid #e2e8f0; padding-bottom: 12px;">
     体験レッスンのご予約ありがとうございます
   </h2>
-  <p>${booking.parentName} 様</p>
+  <p>${parentName} 様</p>
   <p>以下の内容で体験レッスンのご予約を承りました。当日、教室にてお待ちしております。</p>
   <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
     <tr>
@@ -43,11 +51,11 @@ async function sendBookingEmails(booking: Booking, slot: TrialSlot) {
     </tr>
     <tr>
       <td style="padding: 10px; background: #f7fafc; font-weight: bold; border: 1px solid #e2e8f0;">コース</td>
-      <td style="padding: 10px; border: 1px solid #e2e8f0;">${booking.course}</td>
+      <td style="padding: 10px; border: 1px solid #e2e8f0;">${course}</td>
     </tr>
     <tr>
       <td style="padding: 10px; background: #f7fafc; font-weight: bold; border: 1px solid #e2e8f0;">お子様のお名前</td>
-      <td style="padding: 10px; border: 1px solid #e2e8f0;">${booking.childName}（${booking.childAge}）</td>
+      <td style="padding: 10px; border: 1px solid #e2e8f0;">${childName}（${childAge}）</td>
     </tr>
   </table>
   <p style="margin-top: 24px; font-size: 0.875rem; color: #718096;">
@@ -63,7 +71,7 @@ async function sendBookingEmails(booking: Booking, slot: TrialSlot) {
         const adminResult = await resend.emails.send({
             from,
             to: adminEmail,
-            subject: `【KuKKA】新規予約（${booking.parentName}様 / ${when}）`,
+            subject: `【KuKKA】新規予約（${parentName}様 / ${when}）`,
             html: `
 <!DOCTYPE html>
 <html lang="ja">
@@ -78,24 +86,24 @@ async function sendBookingEmails(booking: Booking, slot: TrialSlot) {
     </tr>
     <tr>
       <td style="padding: 10px; background: #f7fafc; font-weight: bold; border: 1px solid #e2e8f0;">保護者様のお名前</td>
-      <td style="padding: 10px; border: 1px solid #e2e8f0;">${booking.parentName}</td>
+      <td style="padding: 10px; border: 1px solid #e2e8f0;">${parentName}</td>
     </tr>
     <tr>
       <td style="padding: 10px; background: #f7fafc; font-weight: bold; border: 1px solid #e2e8f0;">お子様のお名前</td>
-      <td style="padding: 10px; border: 1px solid #e2e8f0;">${booking.childName}（${booking.childAge}）</td>
+      <td style="padding: 10px; border: 1px solid #e2e8f0;">${childName}（${childAge}）</td>
     </tr>
     <tr>
       <td style="padding: 10px; background: #f7fafc; font-weight: bold; border: 1px solid #e2e8f0;">メールアドレス</td>
-      <td style="padding: 10px; border: 1px solid #e2e8f0;"><a href="mailto:${booking.email}">${booking.email}</a></td>
+      <td style="padding: 10px; border: 1px solid #e2e8f0;"><a href="mailto:${email}">${email}</a></td>
     </tr>
-    ${booking.phone ? `
+    ${phone ? `
     <tr>
       <td style="padding: 10px; background: #f7fafc; font-weight: bold; border: 1px solid #e2e8f0;">電話番号</td>
-      <td style="padding: 10px; border: 1px solid #e2e8f0;">${booking.phone}</td>
+      <td style="padding: 10px; border: 1px solid #e2e8f0;">${phone}</td>
     </tr>` : ''}
     <tr>
       <td style="padding: 10px; background: #f7fafc; font-weight: bold; border: 1px solid #e2e8f0;">コース</td>
-      <td style="padding: 10px; border: 1px solid #e2e8f0;">${booking.course}</td>
+      <td style="padding: 10px; border: 1px solid #e2e8f0;">${course}</td>
     </tr>
   </table>
   <p style="margin-top: 24px; font-size: 0.875rem; color: #718096;">
