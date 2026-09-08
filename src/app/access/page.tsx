@@ -19,38 +19,15 @@ export default function AccessPage() {
 
             <Section>
                 <div className={styles.locations}>
-                    {/* Maebashi ※ダミー住所（公開前に正式住所へ差し替え） */}
+                    {/* 正式な住所が確定するまでは、実在するかのような住所・地図を表示しない */}
                     <Card className={styles.locationCard}>
                         <h3>前橋教室</h3>
-                        <p className={styles.address}>〒371-0022 群馬県前橋市千代田町1-2-3 KuKKAビル2F</p>
-                        <div className={styles.mapContainer}>
-                            <iframe
-                                src="https://www.google.com/maps?q=36.3907,139.0634&z=16&output=embed"
-                                width="100%"
-                                height="100%"
-                                className={styles.mapFrame}
-                                allowFullScreen={false}
-                                loading="lazy"
-                                referrerPolicy="no-referrer-when-downgrade"
-                            />
-                        </div>
+                        <p className={styles.mutedText}>住所は準備中です。詳細はお問い合わせください。</p>
                     </Card>
 
-                    {/* Hikari Lab Takasaki ※ダミー住所（公開前に正式住所へ差し替え） */}
                     <Card className={styles.locationCard}>
                         <h3>ヒカリラボ高崎教室</h3>
-                        <p className={styles.address}>〒370-0849 群馬県高崎市八島町1-1 ヒカリラボビル3F</p>
-                        <div className={styles.mapContainer}>
-                            <iframe
-                                src="https://www.google.com/maps?q=36.3221,139.0035&z=16&output=embed"
-                                width="100%"
-                                height="100%"
-                                className={styles.mapFrame}
-                                allowFullScreen={false}
-                                loading="lazy"
-                                referrerPolicy="no-referrer-when-downgrade"
-                            />
-                        </div>
+                        <p className={styles.mutedText}>住所は準備中です。詳細はお問い合わせください。</p>
                     </Card>
                 </div>
 

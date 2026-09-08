@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import { Resend } from 'resend';
+import { escapeHtml } from '@/lib/escapeHtml';
 
 async function sendInquiryNotification(params: {
     parentName: string;
@@ -12,7 +13,14 @@ async function sendInquiryNotification(params: {
     preferredDates: string;
     message?: string;
 }) {
-    const { parentName, childName, childAge, email, phone, course, preferredDates, message } = params;
+    const parentName = escapeHtml(params.parentName);
+    const childName = escapeHtml(params.childName);
+    const childAge = escapeHtml(params.childAge);
+    const email = escapeHtml(params.email);
+    const phone = params.phone ? escapeHtml(params.phone) : params.phone;
+    const course = params.course ? escapeHtml(params.course) : params.course;
+    const preferredDates = escapeHtml(params.preferredDates);
+    const message = params.message ? escapeHtml(params.message) : params.message;
     try {
         const resend = new Resend(process.env.RESEND_API_KEY);
         const { error } = await resend.emails.send({
